@@ -23,6 +23,8 @@ public class DBHelper extends SQLiteOpenHelper {
         LivroContract.Columns.emprestado
     );
 
+    private static String SQL_DROP = "DROP TABLE IF EXISTS " + LivroContract.TABLE_NAME;
+
     private DBHelper(Context context) {
         super(context, BD_NAME, null, BD_VERSION);
     }
@@ -37,11 +39,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL(SQL_DROP);
+        db.execSQL(SQL_CREATE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        onCreate(db);
     }
 }
