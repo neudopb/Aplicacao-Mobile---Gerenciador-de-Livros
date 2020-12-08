@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,12 +10,14 @@
         android:id="@+id/cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp">
+        android:layout_margin="4dp"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="4dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="10dp">
 
         <ImageView
             android:id="@+id/ic_livro"
@@ -32,9 +35,20 @@
             android:layout_height="wrap_content"
             android:text="Titulo do Livro"
             android:layout_toRightOf="@+id/ic_livro"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
+            android:textColor="@color/colorPrimaryDark"
+            />
+
+        <ImageView
+            android:id="@+id/ic_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_star"
+            android:layout_toRightOf="@+id/txtTitulo"
+            android:layout_alignParentTop="true"
+            android:visibility="invisible"
             />
 
         <TextView
