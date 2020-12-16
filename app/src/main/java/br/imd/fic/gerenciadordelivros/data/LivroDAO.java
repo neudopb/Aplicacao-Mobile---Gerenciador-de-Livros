@@ -1,5 +1,6 @@
 package br.imd.fic.gerenciadordelivros.data;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -67,5 +68,37 @@ public class LivroDAO {
         int emprestado = c.getInt(c.getColumnIndex(LivroContract.Columns.emprestado));
 
         return new Livro(id, tituto, autor, editora, emprestado);
+    }
+    
+    public void save(Livro livro) {
+
+        ContentValues values = new ContentValues();
+        values.put(LivroContract.Columns.titulo, livro.getTitulo());
+        values.put(LivroContract.Columns.autor, livro.getAutor());
+        values.put(LivroContract.Columns.editora, livro.getEditora());
+        values.put(LivroContract.Columns.emprestado, livro.getEmprestado());
+
+        Long id = bd.insert(LivroContract.TABLE_NAME, null, values);
+        livro.setId(id);
+    }
+
+    public void update(Livro livro) {
+
+        ContentValues values = new ContentValues();
+        values.put(LivroContract.Columns.titulo, livro.getTitulo());
+        values.put(LivroContract.Columns.autor, livro.getAutor());
+        values.put(LivroContract.Columns.editora, livro.getEditora());
+        values.put(LivroContract.Columns.emprestado, livro.getEmprestado());
+
+        bd.update(LivroContract.TABLE_NAME, values,
+                LivroContract.Columns._ID+"?",
+                new String[]{String.valueOf(livro.getId())});
+    }
+
+    public void delete(Livro livro) {
+
+        bd.delete(LivroContract.TABLE_NAME,
+                LivroContract.Columns._ID+"?",
+                new String[]{String.valueOf(livro.getId())});
     }
 }
